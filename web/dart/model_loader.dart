@@ -73,6 +73,9 @@ class ModelLoader {
   }
 
   BoxSprite parseBox(connection_model.Box box) {
+    if (box is connection_model.Statement) {
+      return new StatementBox.Statement(this.owner, box);//(this.owner, box.id, box, box.position.x, box.position.y);
+    }
     return new BoxSprite.Box(this.owner, box);
   }
 

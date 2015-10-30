@@ -25,6 +25,29 @@ class StatementBox extends BoxSprite {
     this.onMouseClick.listen(onclicked);
   }
 
+  StatementBox.Statement(GraphicalScriptEditor owner, connection_model.Statement statement) : super(owner, statement.id, 'Statement', statement.position.x, statement.position.y) {
+    this.statement = statement;
+    this.box = statement;
+    this.id = box.id;
+    // draw the key
+    var bitmapData = owner.resourceManager.getBitmapData("box");
+    var bitmap = new stagexl.Bitmap(bitmapData);
+    this.addChild(bitmap);
+
+    _setupTitle(box.boxName);
+    this.useHandCursor = true;
+    _setupHandler();
+    this.x = box.position.x;
+    this.y = box.position.y;
+
+    for(connection_model.InPort p in box.inports) {
+      addInPortObj(p);
+    }
+
+    for(connection_model.OutPort p in box.outports) {
+      addOutPortObj(p);
+    }
+  }
   onclicked(stagexl.MouseEvent me) {
     if (me.localX < 20 && me.localY >= 180) {
       owner.modelLoader.focus(statement);

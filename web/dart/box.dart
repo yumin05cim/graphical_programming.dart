@@ -26,7 +26,7 @@ class BoxSprite extends stagexl.Sprite {
       addInPortObj(p);
     }
 
-    for(connection_model.InPort p in box.outports) {
+    for(connection_model.OutPort p in box.outports) {
       addOutPortObj(p);
     }
   }
@@ -76,13 +76,13 @@ class BoxSprite extends stagexl.Sprite {
     owner.stage.addChild(port);
   }
 
-  void addOutPortObj(connection_model.OutPort outport) {
+  OutPortSprite addOutPortObj(connection_model.OutPort outport) {
     var port = new OutPortSprite.Port(this, outport);
     _addOutPortSprite(port);
     return port;
   }
 
-  void addOutPort(String name) {
+  OutPortSprite addOutPort(String name) {
     var port = new OutPortSprite(this, name);
     _addOutPortSprite(port);
     return port;
@@ -96,26 +96,26 @@ class BoxSprite extends stagexl.Sprite {
     owner.stage.addChild(port);
   }
 
-  void addInPortObj(connection_model.InPort inport) {
+  InPortSprite addInPortObj(connection_model.InPort inport) {
     var port = new InPortSprite.Port(this, inport);
     _addInPortSprite(port);
     return port;
   }
 
-  void addInPort(String name) {
+  InPortSprite addInPort(String name) {
     var port = new InPortSprite(this, name);
     _addInPortSprite(port);
     return port;
   }
 
   bool down = false;
-  MouseEvent e0;
-  int x0;
-  int y0;
-  int downX0;
-  int downY0;
+  stagexl.MouseEvent e0;
+  var x0;
+  var y0;
+  var downX0;
+  var downY0;
 
-  _keyDown(MouseEvent me) {
+  _keyDown(stagexl.MouseEvent me) {
     down = true;
     e0 = me;
     x0 = this.x;
@@ -124,14 +124,14 @@ class BoxSprite extends stagexl.Sprite {
     downY0 = e0.stageY;
   }
 
-  _keyMove(MouseEvent me) {
+  _keyMove(stagexl.MouseEvent me) {
     if(down) {
-      int x = me.stageX;
-      int y = me.stageY;
-      int dx = ( x - downX0 );
-      int dy = ( y - downY0 );
-      int vx = x0 + dx - this.x;
-      int vy = y0 + dy - this.y;
+      var x = me.stageX;
+      var y = me.stageY;
+      var dx = ( x - downX0 );
+      var dy = ( y - downY0 );
+      var vx = x0 + dx - this.x;
+      var vy = y0 + dy - this.y;
       this.x = x0 + dx;
       this.y = y0 + dy;
 
@@ -148,7 +148,7 @@ class BoxSprite extends stagexl.Sprite {
     }
   }
 
-  _keyUp(MouseEvent me) {
+  _keyUp(stagexl.MouseEvent me) {
     down = false;
   }
 }

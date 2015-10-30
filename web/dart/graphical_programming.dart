@@ -74,7 +74,7 @@ class GraphicalScriptEditor {
         }
       }
     });
-    stage.onMouseMove.listen((MouseEvent me) {
+    stage.onMouseMove.listen((stagexl.MouseEvent me) {
       if (portDragging != null) {
         if (connectorLine == null) {
           connectorLine = new stagexl.Shape();
@@ -91,7 +91,7 @@ class GraphicalScriptEditor {
       }
     });
 
-    stage.onMouseUp.listen((MouseEvent me) {
+    stage.onMouseUp.listen((stagexl.MouseEvent me) {
       if (connectorLine != null) {
         stage.removeChild(connectorLine);
         connectorLine = null;

@@ -37,14 +37,14 @@ class PortSprite extends stagexl.Sprite {
   }
 
 
-  _keyDown(MouseEvent me) {
+  _keyDown(stagexl.MouseEvent me) {
     owner.owner.portDragging = this;
   }
 
-  _keyMove(MouseEvent me) {
+  _keyMove(stagexl.MouseEvent me) {
   }
 
-  _keyUp(MouseEvent me) {
+  _keyUp(stagexl.MouseEvent me) {
     if (owner.owner.portDragging != null) {
       if (owner.owner.portDragging != this) {
         owner.owner.onConnect(this, owner.owner.portDragging);
